@@ -18,9 +18,8 @@ class ItemPeso extends Item {
 
   @override
   double calcular_total() {
-    return producto.get_precio() *
-        producto
-            .unidades_disponibles; // teniendo en cuenta que en el caso de Producto peso , las unidades disponibles equivalen a el peso de dicho producto.
+    return (producto.get_precio() * producto.unidades_disponibles) * cantidad;
+    // teniendo en cuenta que en el caso de Producto peso , las unidades disponibles equivalen a el peso de dicho producto.
   }
 }
 
