@@ -8,12 +8,12 @@ class CarritoDeCompras {
   void agregarItem(Producto producto, int cantidad) {
     var sku = producto.sku.substring(0, 2);
 
-    if (sku == "EA") {
-      _items.add(ItemNormal(producto, cantidad));
+    if (sku == "SP") {
+      _items.add(ItemDescuento(producto, cantidad));
     } else if (sku == "WE") {
       _items.add(ItemPeso(producto, cantidad));
     } else {
-      _items.add(ItemDescuento(producto, cantidad));
+      _items.add(ItemNormal(producto, cantidad));
     }
   }
 
