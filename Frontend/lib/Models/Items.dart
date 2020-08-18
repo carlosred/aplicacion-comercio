@@ -27,7 +27,7 @@ class ItemDescuento extends Item {
 
   @override
   double calcularTotal() {
-    if (_cantidad % 3 == 0) {
+    if (_cantidad % 3 == 0 || _cantidad >= 3) {
       //aplica descuento
 
       var descuento = (_cantidad * 20) / 3;
