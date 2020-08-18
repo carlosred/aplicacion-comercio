@@ -1,4 +1,4 @@
-abstract class Producto {
+class Producto {
   String _nombre;
   String _descripcion;
   String _sku;
