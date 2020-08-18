@@ -1,10 +1,22 @@
 import 'package:TareaChucho/Models/CarritoDeCompras.dart';
 import 'package:TareaChucho/Models/Producto.dart';
 
+import 'CarritoDeCompras.dart';
+
 class Cliente {
-  CarritoDeCompras carrito;
-  String nombre;
-  void agregar_producto_a_carrito(Producto product, int cantidad) {
-    carrito.agregar_item(product, cantidad);
+  CarritoDeCompras _carrito;
+  String _nombre;
+
+  Cliente(carrito, nombre) {
+    this._carrito = carrito;
+    this._nombre = nombre;
+  }
+
+  void agregarProductoACarrito(Producto producto, int cantidad) {
+    _carrito.agregarItem(producto, cantidad);
+  }
+
+  set carrito(CarritoDeCompras carrito) {
+    this._carrito = carrito;
   }
 }

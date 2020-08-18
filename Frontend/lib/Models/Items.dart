@@ -1,14 +1,13 @@
 import 'Producto.dart';
 
 abstract class Item {
-  int cantidad;
   Producto producto;
+  int _cantidad;
 
-  // ignore: non_constant_identifier_names
-  double calcular_total();
+  double calcularTotal();
 
   Item(Producto producto, int cantidad) {
-    this.cantidad = cantidad;
+    this._cantidad = cantidad;
     this.producto = producto;
   }
 }
@@ -17,9 +16,9 @@ class ItemPeso extends Item {
   ItemPeso(Producto producto, int cantidad) : super(producto, cantidad);
 
   @override
-  double calcular_total() {
-    return (producto.get_precio() * producto.unidades_disponibles) * cantidad;
-    // teniendo en cuenta que en el caso de Producto peso , las unidades disponibles equivalen a el peso de dicho producto.
+  double calcularTotal() {
+    return producto.getPrecio() * (_cantidad / 1000);
+    // teniendo en cuenta que en el caso de Producto peso, la cantidad se da en kilogramos y el precio en precio  por gramo se convierte la cantidad de kilos a gramos para tener la misma relación.
   }
 }
 
@@ -27,20 +26,20 @@ class ItemDescuento extends Item {
   ItemDescuento(Producto producto, int cantidad) : super(producto, cantidad);
 
   @override
-  double calcular_total() {
-    if (cantidad % 3 == 1) {
+  double calcularTotal() {
+    if (_cantidad % 3 == 0) {
       //aplica descuento
 
-      var descuento = (cantidad * 20) / 3;
-      // en caso que el dscuento sea mayor de 50 ,
+      var descuento = (_cantidad * 20) / 3;
+      // en caso que el descuento sea mayor de 50 ,
       if (descuento >= 50) {
-        return cantidad * (producto.get_precio() * (50 / 100));
+        return _cantidad * (producto.getPrecio() * (50 / 100));
       } else {
-        return cantidad * (producto.get_precio() * (descuento / 100));
+        return _cantidad * (producto.getPrecio() * (descuento / 100));
       }
     } else {
       //no aplica
-      return producto.get_precio() * cantidad;
+      return producto.getPrecio() * _cantidad;
     }
   }
 }
@@ -49,7 +48,7 @@ class ItemNormal extends Item {
   ItemNormal(Producto producto, int cantidad) : super(producto, cantidad);
 
   @override
-  double calcular_total() {
-    return producto.get_precio() * cantidad;
+  double calcularTotal() {
+    return producto.getPrecio() * _cantidad;
   }
 }
