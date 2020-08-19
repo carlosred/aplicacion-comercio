@@ -37,7 +37,7 @@ class Producto {
     return _precio;
   }
 
-  bool tieneUnidadesDisponibles() {
-    return _unidadesDisponibles != 0 ? true : false;
+  bool tieneUnidadesDisponibles(cantidad) {
+    return _unidadesDisponibles >= cantidad;
   }
 }
